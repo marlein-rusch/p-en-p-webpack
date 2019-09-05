@@ -1,0 +1,16 @@
+{
+	"name": "potlood-en-penseel",
+	"version": "1.0.0",
+	"description": "Hobbyproject for a painting association",
+	"main": "index.js",
+	"repository": "https://github.com/Marleintje/p-en-p-webpack.git",
+	"author": "Marlein",
+	"license": "MIT",
+	"private": true,
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"babel-loader": "^8.0.6",
+		"webpack": "^4.39.3",
+		"webpack-cli": "^3.3.8"
+	}
+}
