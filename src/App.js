@@ -1,14 +1,36 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { doTest } from './store/session/actions';
 
-const App = ({ label = 'This will display if label is not defined' }) => (
-    <div className="bg-light p-3">
-        {label}
-    </div>
-);
+class App extends Component {
 
-App.propTypes = {
-    label: PropTypes.string.isRequired,
-};
+    handleClick = () => {
+        this.props.handleClick();
+    }
 
-export default App;
+    render() {
+        const { something } = this.props;
+
+        return (
+            <div className="bg-light p-3">
+                <div className="pb-2">REDUX STATE TEST: {something}</div>
+                <button 
+                    className="btn btn-primary"
+                    onClick={this.handleClick}
+                >
+                    Redux state change test
+                </button>   
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = state => ({
+	something: state.session.something
+});
+
+const mapDispatchToProps = dispatch => ({
+	handleClick: () => { dispatch(doTest("This is working!")); }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
