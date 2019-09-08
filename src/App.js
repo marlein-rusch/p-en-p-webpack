@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+
 import { doTest } from './store/session/actions';
+import "./styling/main.scss";
 
 class App extends Component {
 
@@ -19,7 +21,10 @@ class App extends Component {
                     onClick={this.handleClick}
                 >
                     Redux state change test
-                </button>   
+                </button>
+                <div className="test-style">
+                    Testing styles
+                </div>
             </div>
         )
     }
