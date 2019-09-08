@@ -1,38 +1,29 @@
-// https://thoughtbot.com/blog/setting-up-webpack-for-react-and-hot-module-replacement
-module.exports = {
-	context: __dirname + "/app",
-	entry: "./app.js",
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-	output: {
-		filename: "app.js",
-		path: __dirname + "/dist",
-    },
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader'
-				}
-			},
-			{
-				test: /\.html$/,
-				use: [
-					{
-						loader: 'html-loader',
-						options: { minimize: true }
-					}
-				]
-			},
-			{
-				test: /\.scss$/,
-				use: [
-					'style-loader',
-					'css-loader',
-					'sass-loader'
-				]
-			}
-		]
-	},
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  ]
 };
