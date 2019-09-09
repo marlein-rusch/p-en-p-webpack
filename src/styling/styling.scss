@@ -1,0 +1,155 @@
+// Variables
+// https://type-scale.com/ --> Major second
+$font-size-1: 28.8px; // 28.83
+$font-size-2: 26.5px;  // 26.53
+$font-size-3: 22.8px; // 22.78
+$font-size-4: 20.25px;
+$font-size-5: 18px; 
+$font-size-6: 16px;
+
+// Generates classes .font-size-1 up and until .font-size-6 + overwrite bootstrap header font-sizes
+$font-sizes: $font-size-1, $font-size-2, $font-size-3, $font-size-4, $font-size-5, $font-size-6;
+
+@for $i from 1 through length($font-sizes) {
+    .font-size-#{$i}, .h#{$i}, h#{$i} {
+        font-size: nth($font-sizes, $i)
+    }   
+}
+
+// Reusable classes
+
+.li-bold {
+    li {
+        font-weight: bold;
+    }
+}
+
+// Topbar.js
+
+.topbar {
+    box-shadow: 0 0 5px rgba(0,0,0,0.10);
+    border-bottom: 1.5px solid $primary;
+    a.logo {
+        text-decoration: none;
+        color: $primary;
+    }
+}
+
+.desktop-menu > ul {
+    margin-bottom: 0;
+}
+// https://www.w3schools.com/howto/howto_css_dropdown.asp
+/* The container <div> - needed to position the dropdown content */
+.desktop-menu-dropdown {
+    > a:hover {
+        text-decoration: none;
+    }
+    position: relative;
+    display: inline-block;
+    ul {
+        list-style: none;
+        padding-left: 0;
+        white-space: nowrap;
+    }
+    .drop-link.active {
+        background-color: $primary;
+        color: white;
+    }
+    &:hover {
+        > a {
+            color: white;
+        }
+        .drop-link {    
+            /* Change the background color of the dropdown button when the dropdown content is shown */
+            background-color: $primary;
+        }
+        .dropdown-content {
+            /* Show the dropdown menu on hover */
+            display: block;
+        }
+    }
+}
+
+/* Dropdown Menu */
+.drop-link {
+    color: $secondary;
+    padding: 23px 10px;
+    @include media-breakpoint-up(xl) {
+        padding: 23px 20px;
+    }
+    border-bottom: 1px solid $primary;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;  
+    position: absolute;
+    top: 47px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.15);
+    z-index: 1;
+    a {
+        /* Links inside the dropdown */
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        &:hover {
+            /* Change color of dropdown links on hover */
+            background-color: #ddd;
+        }
+
+    }
+}
+
+// MobileMenu.js
+
+.account-menu-bg,
+.account-menu {
+    position: fixed;
+    border: 0;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    // overflow: scroll; ev. te gebruiken maar checken hoe scrollbars te camoufleren
+    z-index: 102; // https://www.youtube.com/watch?v=QsDDXSmGJZA
+    transition: ease-in-out 300ms;
+}
+
+.account-menu-bg {
+    background-color: white;
+    border-left: 3px solid $primary;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 101;
+    &.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.account-menu {
+    transform: translateX(100%);
+    &.is-open {
+        transform: translateX(0%);
+    }
+}
+
+.account-menu-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: black;
+    transition: ease-in-out 300ms;
+    opacity: 0;
+    pointer-events: none;
+    &.is-open {
+        opacity: 0.8;
+        pointer-events: auto;
+    }
+}

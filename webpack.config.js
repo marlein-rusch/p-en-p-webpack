@@ -1,6 +1,10 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+    // Specifying basepath necessary to assure good redirection when refreshing
+    output: {
+        publicPath: '/'
+    },
     module: {
         rules: [
             {
@@ -28,6 +32,10 @@ module.exports = {
 				]
 			}
         ]
+    },
+    devServer: {
+        // historyAPIFallback will redirect 404s to /index.html
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebPackPlugin({
