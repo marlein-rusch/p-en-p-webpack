@@ -13,7 +13,6 @@ import { Route } from 'react-router-dom';
 import { loadArchive, loadMuseums, loadAnnouncements } from './store/session/actions';
 import Topbar from './components/Topbar';
 import Main from './components/Main';
-import Wrap from './elements/Wrap';
 import MobileMenu from './components/MobileMenu';
 
 import './styling/index.scss';
@@ -83,11 +82,11 @@ export class App extends Component {
 
 	render() {
 		return (
-			<Wrap>
+			<div>
 				<Route path='/' component={Topbar} />
 				<Main/>
 				<MobileMenu/>
-			</Wrap>
+			</div>
 		)
 	}
 }
